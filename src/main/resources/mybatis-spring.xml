@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--1， 数据库连接的操作交给spring -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@//127.0.0.1:1521/oracle"></property>
+        <property name="user" value="scott"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+
+    <!--2，配置mybatis的SqlSessionFactory，需要注入全局配置文件和连接池  -->
+    <bean id="sqlSessionFactoryId" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"></property>
+       <!--配置映射器位置-->
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+
+    </bean>
+
+    <!--3, 配置单mapper代理开发模式,通过id名获得mapper类对象，进而调用函数-->
+    <!--<bean id="singleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.UserDaoMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryId"></property>
+    </bean>-->
+    <!-- 3,配置批量mapper代理开发模式，这里就不能指定id了，而是通过引用具体的mapper类名来获得mapper对象，进而操作函数 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="dao"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryId"></property>
+    </bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserMapper">   <!-- 命名空间，名字严格与dao对应，只要不冲突即可 -->
+    <select id="findAll" resultType="model.User">
+  select * from usertemp
+</select>
+    <select id="selectByName" resultType="model.User" parameterType="String">
+        select * from usertemp where name=#{name}
+    </select>
+    <insert id="insert" parameterType="model.User" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select NVL(max(id)+1,1) from usertemp
+        </selectKey>
+        insert into usertemp (id,name,password) values(#{id},#{name},#{password})
+    </insert>
+
+    <insert id="saveOrUpdate" parameterType="model.User">
+            update usertemp
+            set name = #{name},password = #{password}
+            where id = #{id}
+    </insert>
+    <delete id="deleteById" parameterType="int">
+    delete from usertemp where id=#{id}
+  </delete>
+</mapper>

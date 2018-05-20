@@ -1,0 +1,15 @@
+model\Employee.class
+dao\CommodityMapper.class
+dao\EmployeeMapper.class
+model\MessageStore.class
+action\EmployeeAction.class
+action\UserAction.class
+action\HelloworldAction.class
+model\User.class
+action\CommodityAction.class
+model\Commodity.class
+dao\UserMapper.class
+dao\CompanyDaoMapper.class
+action\UserManager.class
+action\CompanyAction.class
+model\Company.class
