@@ -71,23 +71,23 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
                                             store.insert(0, values);
 
-                                            this.up("window").hide();
+                                            this.up("window").close();
                                             console.log(Ext.getCmp("arraygrid").getStore().getNewRecords());
-
+                                            load1()
 
                                         }
                                     }, {
                                         minWidth: 80,
                                         text: '取消',
                                         handler: function () {
-                                            this.up("window").hide();
-                                            this.up("window").hide();
+                                            this.up("window").close();
+
 
                                         }
                                     }]
                                 }]
                             }).show();
-
+                            load1();
                         }
                     }
                 }
@@ -125,7 +125,8 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                             company_update(values);
 
                                             record.set(values);
-                                            win.destroy();
+                                            win.close();
+                                            load1()
                                         }
                                     }, {
                                         minWidth: 80,
@@ -142,9 +143,10 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                             form.loadRecord(record);
                             modify.show();
 
-
+                            load1();
 
                         }
+
 
                     }
 
@@ -186,7 +188,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                     this.up("window").close();
 
 
-
+                                    load1()
                                 }
                             }, {
                                 minWidth: 80,
@@ -200,6 +202,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                         }]
 
                     }).show();
+                    load1();
 
                 }
             },
@@ -270,6 +273,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                         ],
 
                     }).show();
+
                 }
 
             },
@@ -384,4 +388,6 @@ function company_dele(id){
         }
     });
 };
-
+function load1() {
+    Ext.getCmp("arraygrid").getStore().load();
+}

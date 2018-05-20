@@ -21,6 +21,10 @@
         <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
 
     </bean>
+     <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+  </bean>
 
     <!--3, 配置单mapper代理开发模式,通过id名获得mapper类对象，进而调用函数-->
     <!--<bean id="singleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -32,4 +36,5 @@
         <property name="basePackage" value="dao"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryId"></property>
     </bean>
+
 </beans>

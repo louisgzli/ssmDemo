@@ -13,5 +13,11 @@
 
     <!--  ================================== import sub-config file  ================================== -->
     <import resource="mybatis-spring.xml"/>
+    <!--扫描service-->
+    <context:component-scan
+            base-package="service">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    <context:annotation-config />
     <!--  ================================== /import sub-config file  ================================== -->
 </beans>

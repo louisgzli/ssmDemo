@@ -14,16 +14,20 @@
         launch: function() {
 
             //初始化左列表
-             Ext.create("ssmDemo.view.collapseList",{
-                 renderTo:Ext.get("grid-left"),
-             })
+            //  Ext.create("ssmDemo.view.collapseList",{
+            //      renderTo:Ext.get("grid-left"),
+            //  })
 
-            Ext.create('ssmDemo.view.ShowTab', {
-                width: "100%",
-                height: "100%",
-                renderTo:Ext.get("grid-right"),
+            Ext.create("ssmDemo.view.RootPanel",{
+                renderTo:Ext.get("bodyshow")
+            })
 
-            });
+            // Ext.create('ssmDemo.view.ShowTab', {
+            //     width: "100%",
+            //     height: "100%",
+            //     renderTo:Ext.get("grid-right"),
+            //
+            // });
 
 
             // Ext.create("ssmDemo.view.ArrayGrid",{

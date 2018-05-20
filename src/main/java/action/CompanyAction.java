@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.CompanyDaoMapper;
 import model.Company;
+import service.CompanyService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public class CompanyAction extends ActionSupport {
     @Resource
     CompanyDaoMapper companyDaoMapper;
+    @Resource
+    CompanyService companyService;
     List<Company> companies;
     int id;
     String company;
@@ -74,7 +77,7 @@ public class CompanyAction extends ActionSupport {
         temp.setArea(area);
         temp.setType(type);
         System.out.println(temp);
-        companyDaoMapper.insert(temp);
+        companyService.insert(temp);
     }
     //修改company
     public void companyUpdate(){
@@ -87,13 +90,13 @@ public class CompanyAction extends ActionSupport {
         temp.setArea(area);
         temp.setType(type);
         System.out.println(temp);
-        companyDaoMapper.saveOrUpdate(temp);
+        companyService.saveOrUpdate(temp);
     }
     //删除company
     public void companyDelete(){
         System.out.println("companyDelete");
         System.out.println("-%%%%%%%%%%%%%%%%%%%%%%%%%%%=====================*********************");
-        companyDaoMapper.deleteById(id);
+        companyService.deleteById(id);
     }
 
 
@@ -101,7 +104,7 @@ public class CompanyAction extends ActionSupport {
 
     public String loadCompany() throws Exception{
 
-        companies = companyDaoMapper.findAll();
+        companies = companyService.findAll();
 
 
         System.out.println(companies);

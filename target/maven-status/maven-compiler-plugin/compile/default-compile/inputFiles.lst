@@ -3,13 +3,14 @@ D:\web_workspace\ssmDemo\src\main\java\action\UserAction.java
 D:\web_workspace\ssmDemo\src\main\java\action\CommodityAction.java
 D:\web_workspace\ssmDemo\src\main\java\action\UserManager.java
 D:\web_workspace\ssmDemo\src\main\java\dao\CompanyDaoMapper.java
+D:\web_workspace\ssmDemo\src\main\java\service\UserService.java
 D:\web_workspace\ssmDemo\src\main\java\dao\CommodityMapper.java
 D:\web_workspace\ssmDemo\src\main\java\model\Employee.java
 D:\web_workspace\ssmDemo\src\main\java\action\HelloworldAction.java
 D:\web_workspace\ssmDemo\src\main\java\dao\UserMapper.java
 D:\web_workspace\ssmDemo\src\main\java\action\EmployeeAction.java
 D:\web_workspace\ssmDemo\src\main\java\model\Commodity.java
-D:\web_workspace\ssmDemo\src\main\java\model\User.java
 D:\web_workspace\ssmDemo\src\main\java\dao\EmployeeMapper.java
+D:\web_workspace\ssmDemo\src\main\java\model\User.java
 D:\web_workspace\ssmDemo\src\main\java\model\Company.java
 D:\web_workspace\ssmDemo\src\main\java\action\CompanyAction.java

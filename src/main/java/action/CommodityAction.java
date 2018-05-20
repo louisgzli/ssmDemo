@@ -2,6 +2,7 @@ package action;
 
 import dao.CommodityMapper;
 import model.Commodity;
+import service.CommodityService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.List;
 public class CommodityAction {
     @Resource
     CommodityMapper commodityMapper;
+    @Resource
+    CommodityService commodityService;
     public int id;
     public String name;
     public String pType;
@@ -71,7 +74,7 @@ public class CommodityAction {
         temp.setName(name);
         temp.setpType(pType);
         temp.setaType(aType);
-        commodityMapper.insert(temp);
+        commodityService.insert(temp);
     }
     public void commodityUpdate(){
         System.out.println("commodityUpdate");
@@ -80,17 +83,17 @@ public class CommodityAction {
         temp.setName(name);
         temp.setpType(pType);
         temp.setaType(aType);
-        commodityMapper.saveOrUpdate(temp);
+        commodityService.saveOrUpdate(temp);
     }
 
     public void dele(){
         System.out.println("Commodity dele");
 
-        commodityMapper.deleteById(id);
+        commodityService.deleteById(id);
     }
     public String loadCommodity() throws Exception{
         System.out.println("loadCommodity");
-        commodity = commodityMapper.findAll();
+        commodity = commodityService.findAll();
         return "success";
     }
 

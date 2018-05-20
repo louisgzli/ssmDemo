@@ -2,6 +2,7 @@ package action;
 
 import dao.EmployeeMapper;
 import model.Employee;
+import service.EmployeeService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.List;
 public class EmployeeAction {
     @Resource
     EmployeeMapper employeeMapper;
+    @Resource
+    EmployeeService employeeService;
     public int id;
     public String name;
     public int age;
@@ -63,7 +66,7 @@ public class EmployeeAction {
         this.company = company;
     }
     public String loadEmployee(){
-        employeeList = employeeMapper.findAll();
+        employeeList = employeeService.findAll();
         return "success";
     }
 
@@ -73,7 +76,7 @@ public class EmployeeAction {
         temp.setName(name);
         temp.setAge(age);
         temp.setCompany(company);
-        employeeMapper.insert(temp);
+        employeeService.insert(temp);
     }
     public void employeeUpdate(){
         Employee temp = new Employee();
@@ -81,11 +84,11 @@ public class EmployeeAction {
         temp.setName(name);
         temp.setAge(age);
         temp.setCompany(company);
-        employeeMapper.saveOrUpdate(temp);
+        employeeService.saveOrUpdate(temp);
     }
 
     public void dele(){
-        employeeMapper.deleteById(id);
+        employeeService.deleteById(id);
     }
 
 

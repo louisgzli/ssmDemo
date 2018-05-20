@@ -1,6 +1,7 @@
 model\Employee.class
 dao\CommodityMapper.class
 dao\EmployeeMapper.class
+service\UserService.class
 model\MessageStore.class
 action\EmployeeAction.class
 action\UserAction.class

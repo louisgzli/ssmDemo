@@ -1,27 +1,17 @@
-Requires:[
-    "ssmDemo.view.ShowTab",
-    "ssmDemo.view.collapseList",
 
-]
-var list = Ext.create("ssmDemo.view.ArrayGrid",{
-
-})
 Ext.define('ssmDemo.view.RootPanel', {
     extend:'Ext.panel.Panel',
-    width: 500,
-    height: 300,
-    title: 'Border Layout',
+    width: "100%",
+    height: "100%",
+    minWidth:800,
+    minHeight:700,
+    alias:"widget.rootpanel",
+    title: '便民开锁后台管理',
     layout: 'border',
-    items: [{
-        title: 'South Region is resizable',
-        region: 'south',     // position for region
-        xtype: 'panel',
-        height: 100,
-        split: true,         // enable resizing
-        margins: '0 5 5 5'
-    },{
+    items: [
+        {
         // xtype: 'panel' implied by default
-        title: 'West Region is collapsible',
+        title: '菜单栏',
         region:'west',
         xtype: 'panel',
         margins: '5 0 0 5',
@@ -29,19 +19,23 @@ Ext.define('ssmDemo.view.RootPanel', {
         collapsible: true,   // make collapsible
         id: 'west-region-container',
         layout: 'fit',
-        items:{
-            xtype:"collapseList",
+        items:[
+            {xtype:"collapseList"}
+        ]
 
-        }
 
     },{
-        title: 'Center Region',
         region: 'center',     // center region is required, no width/height specified
         xtype: 'panel',
         layout: 'fit',
         margins: '5 5 0 0',
+        items:[
+            {xtype:"showtab"}
+        ]
 
-    }],
+
+    },
+        ],
 
 
 });

@@ -22,7 +22,7 @@ Ext.define('ssmDemo.view.Employee', {
     stateId: 'employee',
     width: "100%",
     height: "100%",
-    title: 'Employee Grid',
+
     //分页
     /*dockedItems: [{
      xtype: 'pagingtoolbar',
@@ -68,24 +68,24 @@ Ext.define('ssmDemo.view.Employee', {
                                             values = form.getValues();
                                             console.log(values);
                                             Ext.getCmp("employee").getStore().insert(0, values);
-                                            this.up("window").hide();
+                                            this.up("window").close();
                                             //添加同步导数据库
                                             employee_add(values);
 
-
+                                            load3()
                                         }
                                     }, {
                                         minWidth: 80,
                                         text: '取消',
                                         handler: function () {
-                                            this.up("window").hide();
-                                            this.up("window").hide();
+                                            this.up("window").close();
+
 
                                         }
                                     }]
                                 }]
                             }).show();
-
+                            load3()
                         }
                     }
                 }
@@ -117,11 +117,12 @@ Ext.define('ssmDemo.view.Employee', {
                                             record = form.getRecord();
                                             values = form.getValues();
                                             record.set(values);
-                                            win.destroy();
+                                            win.close();
 
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("employee").getSelectionModel().getLastSelected().data.id;
                                             employee_update(values);
+                                            load3()
                                         }
                                     }, {
                                         minWidth: 80,
@@ -137,7 +138,7 @@ Ext.define('ssmDemo.view.Employee', {
 
                             form.loadRecord(record);
                             modify.show();
-
+                            load3()
                         }
 
                     }
@@ -176,7 +177,7 @@ Ext.define('ssmDemo.view.Employee', {
                                     for(var i = 0;i<record.length;i++){
                                         employee_dele(record[i].getData().id);
                                     }
-
+                                    load3()
                                 }
                             }, {
                                 minWidth: 80,
@@ -190,7 +191,7 @@ Ext.define('ssmDemo.view.Employee', {
                         }]
 
                     }).show();
-
+                    load3()
                 }
             },
             {
@@ -330,3 +331,6 @@ function employee_dele(id){
         }
     });
 };
+function load3() {
+    Ext.getCmp("employee").getStore().load();
+}

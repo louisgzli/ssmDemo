@@ -71,18 +71,18 @@ Ext.define('ssmDemo.view.User', {
                                             values = form.getValues();
                                             console.log(values);
                                             Ext.getCmp("user").getStore().insert(0, values);
-                                            this.up("window").hide();
+                                            this.up("window").close();
                                             //添加同步导数据库
                                             user_add(values);
 
-
+                                            load4()
                                         }
                                     }, {
                                         minWidth: 80,
                                         text: '取消',
                                         handler: function () {
-                                            this.up("window").hide();
-                                            this.up("window").hide();
+                                            this.up("window").close();
+
 
                                         }
                                     }]
@@ -120,16 +120,17 @@ Ext.define('ssmDemo.view.User', {
                                             record = form.getRecord();
                                             values = form.getValues();
                                             record.set(values);
-                                            win.destroy();
+                                            win.close();
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("user").getSelectionModel().getLastSelected().data.id;
                                             user_update(values);
+                                            load4()
                                         }
                                     }, {
                                         minWidth: 80,
                                         text: '取消',
                                         handler: function () {
-                                            this.up("window").destroy();
+                                            this.up("window").close();
                                         }
                                     }]
                                 }]
@@ -179,7 +180,7 @@ Ext.define('ssmDemo.view.User', {
                                         user_dele(record[i].getData().id);
                                     }
 
-
+                                    load4()
                                 }
                             }, {
                                 minWidth: 80,
@@ -325,3 +326,6 @@ function user_dele(id){
         }
     });
 };
+function load4() {
+    Ext.getCmp("employee").getStore().load();
+}

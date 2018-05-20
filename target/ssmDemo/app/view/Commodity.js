@@ -22,7 +22,7 @@ Ext.define('ssmDemo.view.Commodity', {
     stateId: 'commodity',
     width: "100%",
     height: "100%",
-    title: 'commodity Grid',
+
     //分页
     /*dockedItems: [{
      xtype: 'pagingtoolbar',
@@ -71,22 +71,22 @@ Ext.define('ssmDemo.view.Commodity', {
 
                                             console.log(values);
                                             Ext.getCmp("commodity").getStore().insert(0, values);
-                                            this.up("window").hide();
+                                            this.up("window").close();
 
-
+                                            load2();
                                         }
                                     }, {
                                         minWidth: 80,
                                         text: '取消',
                                         handler: function () {
-                                            this.up("window").hide();
-                                            this.up("window").hide();
+                                            this.up("window").close();
+
 
                                         }
                                     }]
                                 }]
                             }).show();
-
+                            load2();
                         }
                     }
                 }
@@ -118,12 +118,12 @@ Ext.define('ssmDemo.view.Commodity', {
                                             record = form.getRecord();
                                             values = form.getValues();
                                             record.set(values);
-                                            win.destroy();
+                                            win.close();
 
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("commodity").getSelectionModel().getLastSelected().data.id;
                                             update(values);
-
+                                            load2();
                                         }
                                     }, {
                                         minWidth: 80,
@@ -139,7 +139,7 @@ Ext.define('ssmDemo.view.Commodity', {
                                 console.log("in modify" + form);
                             form.loadRecord(record);
                             modify.show();
-
+                            load2();
                         }
 
                     }
@@ -180,7 +180,7 @@ Ext.define('ssmDemo.view.Commodity', {
                                         dele(record[i].getData().id);
                                     }
 
-
+                                    load2();
                                 }
                             }, {
                                 minWidth: 80,
@@ -194,7 +194,7 @@ Ext.define('ssmDemo.view.Commodity', {
                         }]
 
                     }).show();
-
+                    load2();
                 }
             },
             {
@@ -334,3 +334,6 @@ function dele(id){
         }
     });
 };
+function load2() {
+    Ext.getCmp("commodity").getStore().load();
+}

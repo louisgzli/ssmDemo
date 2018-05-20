@@ -2,6 +2,7 @@ package action;
 
 import dao.UserMapper;
 import model.User;
+import service.UserService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,6 +13,8 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 public class UserAction {
     @Resource
     UserMapper userMapper;
+    @Resource
+    UserService userService;
     public int id;
     public String name;
     public String password;
@@ -80,7 +83,7 @@ public class UserAction {
 
         temp.setName(name);
         temp.setPassword(password);
-        userMapper.insert(temp);
+        userService.insert(temp);
     }
     public void userUpdate(){
         System.out.println("userUpdate");
@@ -89,13 +92,13 @@ public class UserAction {
         temp.setId(id);
         temp.setName(name);
         temp.setPassword(password);
-        userMapper.saveOrUpdate(temp);
+        userService.saveOrUpdate(temp);
     }
 
     public void dele(){
         System.out.println("dele");
 
-        userMapper.deleteById(id);
+        userService.deleteById(id);
     }
 
     public String  login(){

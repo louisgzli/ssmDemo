@@ -38,9 +38,10 @@ Ext.define("tab_employee",{
 
     'ssmDemo.view.collapseList', {
     extend:"Ext.panel.Panel",
-    title: 'Accordion Layout',
-    width: "100%",
-    height: "80%",
+
+    alias:"widget.collapseList",
+    // width: "100%",
+    // height: 600,
     defaults: {
         // applied to each contained panel
         bodyStyle: 'padding:15px'

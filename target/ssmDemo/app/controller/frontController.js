@@ -14,6 +14,7 @@ Ext.define("ssmDemo.controller.frontController",{
         "ssmDemo.view.ShowTab",
         "ssmDemo.view.Commodity",
         "ssmDemo.view.collapseList",
+        "ssmDemo.view.RootPanel"
 
     ],
     stores:["Company","Commodity","Employee","User"],
