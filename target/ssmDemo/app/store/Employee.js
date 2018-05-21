@@ -5,20 +5,19 @@ requires:[
     "Ext.ux.data.PagingMemoryProxy",
     'Ext.grid.plugin.BufferedRenderer',
 ]
-Ext.define("ssmDemo.store.Employee",{
-    extend:"Ext.data.Store",
-    model:"ssmDemo.model.Employee",
-    autoLoad:true,
-    proxy:{
+Ext.define("ssmDemo.store.Employee", {
+    extend: "Ext.data.Store",
+    model: "ssmDemo.model.Employee",
+    autoLoad: true,
+    proxy: {
 
-        type:"ajax",
-        url:"employee/loadEmployee.action",
+        type: "ajax",
+        url: "employee/loadEmployee.action",
 
-        reader:{
-            type:"json",
-            root:"employeeList",
+        reader: {
+            type: "json",
+            root: "employeeList",
         },
-
 
 
     },

@@ -156,10 +156,10 @@ Ext.define('ssmDemo.view.User', {
                 handler: function () {
                     console.log("user点了删除")
 
-                    Ext.create("Ext.window.Window",{
-                        title:"确定要删除该记录",
-                        width:300,
-                        height:150,
+                    Ext.create("Ext.window.Window", {
+                        title: "确定要删除该记录",
+                        width: 300,
+                        height: 150,
                         dockedItems: [{
                             xtype: 'toolbar',
                             dock: 'bottom',
@@ -176,7 +176,7 @@ Ext.define('ssmDemo.view.User', {
                                     Ext.getCmp("user").getStore().remove(record);
                                     this.up("window").close();
                                     //从数据库中删除
-                                    for(var i = 0;i<record.length;i++){
+                                    for (var i = 0; i < record.length; i++) {
                                         user_dele(record[i].getData().id);
                                     }
 
@@ -215,33 +215,30 @@ Ext.define('ssmDemo.view.User', {
                             items: [
                                 {
                                     text: "查询",
-                                    handler:function(){
+                                    handler: function () {
                                         var form = this.up("window").down("form");
 
                                         values = form.getValues();
                                         var userNameKey = values.name;
 
 
-
                                         //正则表达式匹配公司名
-                                        if(userNameKey==="")var regexName = new RegExp("[\s\S]*");
-                                        else  var regexName = new RegExp("("+userNameKey+")+");
+                                        if (userNameKey === "") var regexName = new RegExp("[\s\S]*");
+                                        else var regexName = new RegExp("(" + userNameKey + ")+");
 
 
-
-                                        var store  = Ext.getCmp("user").getStore();
-
+                                        var store = Ext.getCmp("user").getStore();
 
 
                                         var count = store.getCount();
-                                        var record_temp=[];
-                                        for(var i = 0;i<count;i++){
+                                        var record_temp = [];
+                                        for (var i = 0; i < count; i++) {
                                             var strName = store.getAt(i).get("name").toString();
 
 
                                             //正则表达式匹配company
 
-                                            if(regexName.test(strName)){
+                                            if (regexName.test(strName)) {
                                                 record_temp.push(store.getAt(i));
                                             }
                                         }
@@ -256,16 +253,28 @@ Ext.define('ssmDemo.view.User', {
                     Ext.getCmp("query_userPassword").hide();
                 }
             },
+            {
+                xtype: 'button',
+                text: "重新加载",
+
+                tooltip: '重新加载',
+                handler:function(){
+                    var store = Ext.getCmp("user").getStore();
+                    store.clearFilter(true);
+                    store.load();
+
+                }
+            },
         ],
     }],
 
     initComponent: function () {
         this.columns = [
             {
-                text:"id",
-                flex:1,
-                sortable:true,
-                dataIndex:"id",
+                text: "id",
+                flex: 1,
+                sortable: true,
+                dataIndex: "id",
             },
 
             {
@@ -290,42 +299,46 @@ Ext.define('ssmDemo.view.User', {
     },
 
 })
-function user_add(values){
+
+function user_add(values) {
     Ext.Ajax.request({
         url: 'user/new.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            password:values.password,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            password: values.password,
 
         }
     });
 };
-function user_update(values){
+
+function user_update(values) {
     Ext.Ajax.request({
         url: 'user/update.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            password:values.password,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            password: values.password,
         }
     });
 };
-function user_dele(id){
+
+function user_dele(id) {
     console.log("->>>>>>>>>>>>>>>>>>>>>");
     Ext.Ajax.request({
         url: 'user/dele.action',
 
-        method:"post",
-        params:{
-            id:id,
+        method: "post",
+        params: {
+            id: id,
         }
     });
 };
+
 function load4() {
     Ext.getCmp("employee").getStore().load();
 }

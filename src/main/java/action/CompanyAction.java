@@ -19,8 +19,13 @@ public class CompanyAction extends ActionSupport {
     int staff;
     String type;
     String area;
+
     public List<Company> getCompanies() {
         return companies;
+    }
+
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
     }
 
     public int getId() {
@@ -63,12 +68,8 @@ public class CompanyAction extends ActionSupport {
         this.area = area;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
-    }
-
     //添加company
-    public void companyCreate(){
+    public void companyCreate() {
         System.out.println("companyCreate");
         Company temp = new Company();
 
@@ -79,8 +80,9 @@ public class CompanyAction extends ActionSupport {
         System.out.println(temp);
         companyService.insert(temp);
     }
+
     //修改company
-    public void companyUpdate(){
+    public void companyUpdate() {
         System.out.println("companyUpdate");
 
         Company temp = new Company();
@@ -92,17 +94,16 @@ public class CompanyAction extends ActionSupport {
         System.out.println(temp);
         companyService.saveOrUpdate(temp);
     }
+
     //删除company
-    public void companyDelete(){
+    public void companyDelete() {
         System.out.println("companyDelete");
         System.out.println("-%%%%%%%%%%%%%%%%%%%%%%%%%%%=====================*********************");
         companyService.deleteById(id);
     }
 
 
-
-
-    public String loadCompany() throws Exception{
+    public String loadCompany() throws Exception {
 
         companies = companyService.findAll();
 
@@ -110,7 +111,6 @@ public class CompanyAction extends ActionSupport {
         System.out.println(companies);
         return SUCCESS;
     }
-
 
 
 }

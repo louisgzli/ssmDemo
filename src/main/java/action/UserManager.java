@@ -7,15 +7,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 public class UserManager {
-    @Resource
-    UserMapper usermapper;
     public int id;
     public String name;
     public String password;
     public int count;
     public List<User> userList;
-
-
+    @Resource
+    UserMapper usermapper;
 
     public int getId() {
         return id;
@@ -57,7 +55,7 @@ public class UserManager {
         this.userList = userList;
     }
 
-    public String loadUser ()throws Exception{
+    public String loadUser() throws Exception {
         userList = usermapper.findAll();
         return "success";
     }

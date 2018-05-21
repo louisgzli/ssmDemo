@@ -1,4 +1,4 @@
-Ext.define("ssmDemo.controller.frontController",{
+Ext.define("ssmDemo.controller.frontController", {
 
     extend: 'Ext.app.Controller',
 
@@ -17,13 +17,10 @@ Ext.define("ssmDemo.controller.frontController",{
         "ssmDemo.view.RootPanel"
 
     ],
-    stores:["Company","Commodity","Employee","User"],
-    models:["Company","Commodity","Employee","User"],
-    init: function() {
-        this.control({
-
-
-        });
+    stores: ["Company", "Commodity", "Employee", "User"],
+    models: ["Company", "Commodity", "Employee", "User"],
+    init: function () {
+        this.control({});
 
     },
 })

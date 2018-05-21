@@ -65,7 +65,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                             values = form.getValues();
 
                                             //添加同步导数据库
-                                           company_add(values);
+                                            company_add(values);
 
                                             var store = Ext.getCmp("arraygrid").getStore();
 
@@ -140,7 +140,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                             form = modify.down("form");
                             record = Ext.getCmp("arraygrid").getSelectionModel().getLastSelected(),
 
-                            form.loadRecord(record);
+                                form.loadRecord(record);
                             modify.show();
 
                             load1();
@@ -160,10 +160,10 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
                 handler: function () {
                     console.log("arraygrid点了删除")
-                    Ext.create("Ext.window.Window",{
-                        title:"确定要删除该记录",
-                        width:300,
-                        height:150,
+                    Ext.create("Ext.window.Window", {
+                        title: "确定要删除该记录",
+                        width: 300,
+                        height: 150,
                         dockedItems: [{
                             xtype: 'toolbar',
                             dock: 'bottom',
@@ -175,13 +175,12 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                 minWidth: 80,
                                 text: '删除',
                                 handler: function () {
-                                     record = Ext.getCmp("arraygrid").getSelectionModel().getSelection();
+                                    record = Ext.getCmp("arraygrid").getSelectionModel().getSelection();
 
                                     //从数据库中删除
-                                    for(var i = 0;i<record.length;i++){
+                                    for (var i = 0; i < record.length; i++) {
                                         company_dele(record[i].getData().id);
                                     }
-
 
 
                                     Ext.getCmp("arraygrid").getStore().remove(record);
@@ -224,40 +223,40 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                             items: [
                                 {
                                     text: "查询",
-                                    handler:function(){
+                                    handler: function () {
                                         var form = this.up("window").down("form");
                                         values = form.getValues();
                                         var companyKey = values.company;
                                         var staffKey = values.staff;
-                                        if(values.staff.toString().length==0)staffKey=1000000;
+                                        if (values.staff.toString().length == 0) staffKey = 1000000;
                                         var typeKey = values.type;
                                         var areaKey = values.area;
 
                                         //正则表达式匹配公司名
-                                        if(companyKey==="")var regexCompany = new RegExp("[\s\S]*");
-                                        else  var regexCompany = new RegExp("("+companyKey+")+");
+                                        if (companyKey === "") var regexCompany = new RegExp("[\s\S]*");
+                                        else var regexCompany = new RegExp("(" + companyKey + ")+");
                                         // var regexStaff = new RegExp("[*("+staffKey+")*]");
-                                        if(typeKey===undefined)var regexType = new RegExp("[\s\S]*");
-                                        else var regexType = new RegExp("("+typeKey+")+");
-                                        if(areaKey==="")var regexArea = new RegExp("[\s\S]*");
-                                        else var regexArea = new RegExp("("+areaKey+")+");
-                                        store  = Ext.getCmp("arraygrid").getStore();
+                                        if (typeKey === undefined) var regexType = new RegExp("[\s\S]*");
+                                        else var regexType = new RegExp("(" + typeKey + ")+");
+                                        if (areaKey === "") var regexArea = new RegExp("[\s\S]*");
+                                        else var regexArea = new RegExp("(" + areaKey + ")+");
+                                        store = Ext.getCmp("arraygrid").getStore();
 
 
                                         var count = store.getCount();
-                                        var record_temp=[];
-                                        for(var i = 0;i<count;i++){
+                                        var record_temp = [];
+                                        for (var i = 0; i < count; i++) {
                                             var strCompany = store.getAt(i).get("company").toString();
                                             var staffNum = store.getAt(i).get("staff");
                                             var strType = store.getAt(i).get("type").toString();
                                             var strArea = store.getAt(i).get("area").toString();
                                             //正则表达式匹配company
                                             var x = 0;
-                                            if(regexCompany.test(strCompany))x = 1;
-                                            if(staffKey>=staffNum) x= 2;
-                                            if(regexType.test(strType))x = 3;
-                                            if( regexArea.test(strArea))x = 4;
-                                            if(regexCompany.test(strCompany)&&staffKey>=staffNum&&regexType.test(strType)&&regexArea.test(strArea)){
+                                            if (regexCompany.test(strCompany)) x = 1;
+                                            if (staffKey >= staffNum) x = 2;
+                                            if (regexType.test(strType)) x = 3;
+                                            if (regexArea.test(strArea)) x = 4;
+                                            if (regexCompany.test(strCompany) && staffKey >= staffNum && regexType.test(strType) && regexArea.test(strArea)) {
                                                 record_temp.push(store.getAt(i));
                                             }
                                         }
@@ -277,6 +276,18 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                 }
 
             },
+            {
+                xtype: 'button',
+                text: "重新加载",
+
+                tooltip: '重新加载',
+                handler:function(){
+                    var store = Ext.getCmp("arraygrid").getStore();
+                    store.clearFilter(true);
+                    store.load();
+
+                }
+            }
         ],
     }],
 
@@ -290,10 +301,10 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
         this.columns = [
             {
-                text:"id",
-                flex:1,
-                sortable:true,
-                dataIndex:"id",
+                text: "id",
+                flex: 1,
+                sortable: true,
+                dataIndex: "id",
             },
 
             {
@@ -349,45 +360,48 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
 });
 
-function company_add(values){
+function company_add(values) {
     Ext.Ajax.request({
         url: 'company/new.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            company:values.company,
-            staff:values.staff,
-            type:values.type,
-            area:values.area,
+        method: "post",
+        params: {
+            id: values.id,
+            company: values.company,
+            staff: values.staff,
+            type: values.type,
+            area: values.area,
         }
     });
 };
-function company_update(values){
+
+function company_update(values) {
     Ext.Ajax.request({
         url: "company/update.action",
 
-        method:"post",
-        params:{
-            id:values.id,
-            company:values.company,
-            staff:values.staff,
-            type:values.type,
-            area:values.area,
+        method: "post",
+        params: {
+            id: values.id,
+            company: values.company,
+            staff: values.staff,
+            type: values.type,
+            area: values.area,
         }
     });
 };
-function company_dele(id){
+
+function company_dele(id) {
     console.log("->>>>>>>>>>>>>>>>>>>>>");
     Ext.Ajax.request({
         url: 'company/dele.action',
 
-        method:"post",
-        params:{
-            id:id,
+        method: "post",
+        params: {
+            id: id,
         }
     });
 };
+
 function load1() {
     Ext.getCmp("arraygrid").getStore().load();
 }

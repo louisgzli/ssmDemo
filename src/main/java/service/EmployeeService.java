@@ -9,21 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 @Service
 public class EmployeeService {
     @Resource
     EmployeeMapper employeeMapper;
-    public List<Employee> findAll(){
+
+    public List<Employee> findAll() {
         return employeeMapper.findAll();
     }
-    public void saveOrUpdate(Employee employee){
+
+    public void saveOrUpdate(Employee employee) {
         employeeMapper.saveOrUpdate(employee);
     }
-    public void deleteById(int id){
+
+    public void deleteById(int id) {
         employeeMapper.deleteById(id);
     }
-    public void insert(Employee employee){
+
+    public void insert(Employee employee) {
         employeeMapper.insert(employee);
     }
 }

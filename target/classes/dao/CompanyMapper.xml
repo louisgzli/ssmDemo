@@ -4,22 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dao.CompanyDaoMapper">   <!-- 命名空间，名字严格与dao对应，只要不冲突即可 -->
-<select id="findAll" resultType="model.Company">
-  select * from company
+    <select id="findAll" resultType="model.Company">
+  select * from company order by id asc
 </select>
-  <insert id="insert" parameterType="model.Company" useGeneratedKeys="true" keyProperty="id">
-    <selectKey keyProperty="id" resultType="int" order="BEFORE">
-      select NVL(max(id)+1,1) from company
-    </selectKey>
-    insert into company (id,company,staff,type,area) values(#{id},#{company},#{staff},#{type},#{area})
-  </insert>
+    <insert id="insert" parameterType="model.Company" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select NVL(max(id)+1,1) from company
+        </selectKey>
+        insert into company (id,company,staff,type,area) values(#{id},#{company},#{staff},#{type},#{area})
+    </insert>
 
-  <insert id="saveOrUpdate" parameterType="model.Company">
+    <insert id="saveOrUpdate" parameterType="model.Company">
       update company
       set company = #{company},staff = #{staff},type =#{type},area = #{area}
       where id = #{id}
   </insert>
-  <delete id="deleteById" parameterType="int">
+    <delete id="deleteById" parameterType="int">
     delete from company where id=#{id}
   </delete>
 </mapper>

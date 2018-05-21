@@ -155,10 +155,10 @@ Ext.define('ssmDemo.view.Commodity', {
                 handler: function () {
                     console.log("commodity点了删除")
 
-                    Ext.create("Ext.window.Window",{
-                        title:"确定要删除该记录",
-                        width:300,
-                        height:150,
+                    Ext.create("Ext.window.Window", {
+                        title: "确定要删除该记录",
+                        width: 300,
+                        height: 150,
                         dockedItems: [{
                             xtype: 'toolbar',
                             dock: 'bottom',
@@ -174,9 +174,9 @@ Ext.define('ssmDemo.view.Commodity', {
                                     console.log(record.length);
                                     Ext.getCmp("commodity").getStore().remove(record);
                                     this.up("window").close();
-                                    console.log("-----"+record[0].getData().id);
+                                    console.log("-----" + record[0].getData().id);
                                     //从数据库中删除
-                                    for(var i = 0;i<record.length;i++){
+                                    for (var i = 0; i < record.length; i++) {
                                         dele(record[i].getData().id);
                                     }
 
@@ -215,7 +215,7 @@ Ext.define('ssmDemo.view.Commodity', {
                             items: [
                                 {
                                     text: "查询",
-                                    handler:function(){
+                                    handler: function () {
                                         var form = this.up("window").down("form");
                                         values = form.getValues();
                                         var comNameKey = values.name;
@@ -224,28 +224,27 @@ Ext.define('ssmDemo.view.Commodity', {
 
 
                                         //正则表达式匹配公司名
-                                        if(comNameKey==="")var regexCommodity = new RegExp("[\s\S]*");
-                                        else  var regexCommodity = new RegExp("("+comNameKey+")+");
+                                        if (comNameKey === "") var regexCommodity = new RegExp("[\s\S]*");
+                                        else var regexCommodity = new RegExp("(" + comNameKey + ")+");
 
-                                        if(pTypeKey==="")var regexpType = new RegExp("[\s\S]*");
-                                        else var regexpType = new RegExp("("+pTypeKey+")+");
-                                        if(aTypeKey==="")var regexaType = new RegExp("[\s\S]*");
-                                        else var regexaType = new RegExp("("+aTypeKey+")+");
+                                        if (pTypeKey === "") var regexpType = new RegExp("[\s\S]*");
+                                        else var regexpType = new RegExp("(" + pTypeKey + ")+");
+                                        if (aTypeKey === "") var regexaType = new RegExp("[\s\S]*");
+                                        else var regexaType = new RegExp("(" + aTypeKey + ")+");
 
-                                       var store  = Ext.getCmp("commodity").getStore();
-
+                                        var store = Ext.getCmp("commodity").getStore();
 
 
                                         var count = store.getCount();
-                                        var record_temp=[];
-                                        for(var i = 0;i<count;i++){
+                                        var record_temp = [];
+                                        for (var i = 0; i < count; i++) {
                                             var strCom = store.getAt(i).get("name").toString();
                                             var strPtype = store.getAt(i).get("pType").toString();
                                             var strAtype = store.getAt(i).get("aType").toString();
 
                                             //正则表达式匹配company
 
-                                            if(regexCommodity.test(strCom)&&regexpType.test(strPtype)&&regexaType.test(strAtype)){
+                                            if (regexCommodity.test(strCom) && regexpType.test(strPtype) && regexaType.test(strAtype)) {
                                                 record_temp.push(store.getAt(i));
                                             }
                                         }
@@ -266,10 +265,10 @@ Ext.define('ssmDemo.view.Commodity', {
     initComponent: function () {
         this.columns = [
             {
-                text:"id",
-                flex:1,
-                sortable:true,
-                dataIndex:"id",
+                text: "id",
+                flex: 1,
+                sortable: true,
+                dataIndex: "id",
             },
             {
                 text: '商品名称',
@@ -296,44 +295,48 @@ Ext.define('ssmDemo.view.Commodity', {
     },
 
 })
-function add(values){
+
+function add(values) {
     Ext.Ajax.request({
         url: 'commodity/new.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            aType:values.aType,
-            pType:values.pType,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            aType: values.aType,
+            pType: values.pType,
 
         }
     });
 };
-function update(values){
+
+function update(values) {
     Ext.Ajax.request({
         url: 'commodity/update.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            aType:values.aType,
-            pType:values.pType,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            aType: values.aType,
+            pType: values.pType,
         }
     });
 };
-function dele(id){
+
+function dele(id) {
     console.log("->>>>>>>>>>>>>>>>>>>>>");
     Ext.Ajax.request({
         url: 'commodity/dele.action',
 
-        method:"post",
-        params:{
-            id:id,
+        method: "post",
+        params: {
+            id: id,
         }
     });
 };
+
 function load2() {
     Ext.getCmp("commodity").getStore().load();
 }

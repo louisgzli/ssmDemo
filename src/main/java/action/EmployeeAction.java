@@ -8,15 +8,15 @@ import javax.annotation.Resource;
 import java.util.List;
 
 public class EmployeeAction {
-    @Resource
-    EmployeeMapper employeeMapper;
-    @Resource
-    EmployeeService employeeService;
     public int id;
     public String name;
     public int age;
     public String company;
     public List<Employee> employeeList;
+    @Resource
+    EmployeeMapper employeeMapper;
+    @Resource
+    EmployeeService employeeService;
 
     public List<Employee> getEmployeeList() {
         return employeeList;
@@ -65,12 +65,13 @@ public class EmployeeAction {
     public void setCompany(String company) {
         this.company = company;
     }
-    public String loadEmployee(){
+
+    public String loadEmployee() {
         employeeList = employeeService.findAll();
         return "success";
     }
 
-    public void employeeCreate(){
+    public void employeeCreate() {
         Employee temp = new Employee();
 
         temp.setName(name);
@@ -78,7 +79,8 @@ public class EmployeeAction {
         temp.setCompany(company);
         employeeService.insert(temp);
     }
-    public void employeeUpdate(){
+
+    public void employeeUpdate() {
         Employee temp = new Employee();
         temp.setId(id);
         temp.setName(name);
@@ -87,10 +89,9 @@ public class EmployeeAction {
         employeeService.saveOrUpdate(temp);
     }
 
-    public void dele(){
+    public void dele() {
         employeeService.deleteById(id);
     }
-
 
 
 }

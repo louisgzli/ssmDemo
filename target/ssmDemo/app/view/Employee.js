@@ -136,7 +136,7 @@ Ext.define('ssmDemo.view.Employee', {
                             form = modify.down("form");
                             record = Ext.getCmp("employee").getSelectionModel().getLastSelected(),
 
-                            form.loadRecord(record);
+                                form.loadRecord(record);
                             modify.show();
                             load3()
                         }
@@ -154,10 +154,10 @@ Ext.define('ssmDemo.view.Employee', {
                 handler: function () {
                     console.log("employee点了删除")
 
-                    Ext.create("Ext.window.Window",{
-                        title:"确定要删除该记录",
-                        width:300,
-                        height:150,
+                    Ext.create("Ext.window.Window", {
+                        title: "确定要删除该记录",
+                        width: 300,
+                        height: 150,
                         dockedItems: [{
                             xtype: 'toolbar',
                             dock: 'bottom',
@@ -174,7 +174,7 @@ Ext.define('ssmDemo.view.Employee', {
                                     Ext.getCmp("employee").getStore().remove(record);
                                     this.up("window").close();
                                     //从数据库中删除
-                                    for(var i = 0;i<record.length;i++){
+                                    for (var i = 0; i < record.length; i++) {
                                         employee_dele(record[i].getData().id);
                                     }
                                     load3()
@@ -212,36 +212,34 @@ Ext.define('ssmDemo.view.Employee', {
                             items: [
                                 {
                                     text: "查询",
-                                    handler:function(){
+                                    handler: function () {
                                         var form = this.up("window").down("form");
                                         values = form.getValues();
                                         var nameKey = values.name;
                                         var comKey = values.company;
 
 
-
                                         //正则表达式匹配公司名
-                                        if(nameKey==="")var regexName = new RegExp("[\s\S]*");
-                                        else  var regexName = new RegExp("("+nameKey+")+");
+                                        if (nameKey === "") var regexName = new RegExp("[\s\S]*");
+                                        else var regexName = new RegExp("(" + nameKey + ")+");
 
-                                        if(comKey==="")var regexCom = new RegExp("[\s\S]*");
-                                        else var regexCom = new RegExp("("+comKey+")+");
+                                        if (comKey === "") var regexCom = new RegExp("[\s\S]*");
+                                        else var regexCom = new RegExp("(" + comKey + ")+");
 
 
-                                        var store  = Ext.getCmp("employee").getStore();
-
+                                        var store = Ext.getCmp("employee").getStore();
 
 
                                         var count = store.getCount();
-                                        var record_temp=[];
-                                        for(var i = 0;i<count;i++){
+                                        var record_temp = [];
+                                        for (var i = 0; i < count; i++) {
                                             var strName = store.getAt(i).get("name").toString();
                                             var strCom = store.getAt(i).get("company").toString();
 
 
                                             //正则表达式匹配company
 
-                                            if(regexName.test(strName)&&regexCom.test(strCom)){
+                                            if (regexName.test(strName) && regexCom.test(strCom)) {
                                                 record_temp.push(store.getAt(i));
                                             }
                                         }
@@ -256,16 +254,28 @@ Ext.define('ssmDemo.view.Employee', {
                     Ext.getCmp("query_age").hide();
                 }
             },
+            {
+                xtype: 'button',
+                text: "重新加载",
+
+                tooltip: '重新加载',
+                handler:function(){
+                    var store = Ext.getCmp("employee").getStore();
+                    store.clearFilter(true);
+                    store.load();
+
+                }
+            }
         ],
     }],
 
     initComponent: function () {
         this.columns = [
             {
-                text:"id",
-                flex:1,
-                sortable:true,
-                dataIndex:"id",
+                text: "id",
+                flex: 1,
+                sortable: true,
+                dataIndex: "id",
             },
 
             {
@@ -293,44 +303,48 @@ Ext.define('ssmDemo.view.Employee', {
     },
 
 })
-function employee_add(values){
+
+function employee_add(values) {
     Ext.Ajax.request({
         url: 'employee/new.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            age:values.age,
-            company:values.company,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            age: values.age,
+            company: values.company,
 
         }
     });
 };
-function employee_update(values){
+
+function employee_update(values) {
     Ext.Ajax.request({
         url: 'employee/update.action',
 
-        method:"post",
-        params:{
-            id:values.id,
-            name:values.name,
-            age:values.age,
-            company:values.company,
+        method: "post",
+        params: {
+            id: values.id,
+            name: values.name,
+            age: values.age,
+            company: values.company,
         }
     });
 };
-function employee_dele(id){
+
+function employee_dele(id) {
 
     Ext.Ajax.request({
         url: 'employee/dele.action',
 
-        method:"post",
-        params:{
-            id:id,
+        method: "post",
+        params: {
+            id: id,
         }
     });
 };
+
 function load3() {
     Ext.getCmp("employee").getStore().load();
 }

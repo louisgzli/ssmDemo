@@ -1,12 +1,12 @@
 package model;
 
 public class Company {
+    public int count;
     private String company;
     private int staff;//员工数
     private String type;
     private String area;
     private int id;
-    public int count;
 
     public int getCount() {
         return count;
@@ -55,8 +55,9 @@ public class Company {
     public void setArea(String area) {
         this.area = area;
     }
+
     @Override
     public String toString() {
-        return "Company{" +"id="+id+ ",company=" + company + ", staff='" + staff + '\'' + ", type=" + type + "area="+area+'}';
+        return "Company{" + "id=" + id + ",company=" + company + ", staff='" + staff + '\'' + ", type=" + type + "area=" + area + '}';
     }
 }

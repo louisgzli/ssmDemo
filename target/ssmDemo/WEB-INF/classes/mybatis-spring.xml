@@ -8,7 +8,7 @@
     <!--1， 数据库连接的操作交给spring -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@//127.0.0.1:1521/oracle"></property>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@//192.168.1.29:1521/oracle"></property>
         <property name="user" value="scott"></property>
         <property name="password" value="123456"></property>
     </bean>

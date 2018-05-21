@@ -3,24 +3,24 @@
  */
 Ext.define('ssmDemo.view.UserChange', {
 
-    extend:"Ext.window.Window",
-    alias:"widget.userchange",
+    extend: "Ext.window.Window",
+    alias: "widget.userchange",
 
     width: 650,
 
-    items:[ {
-        xtype:"form",
+    items: [{
+        xtype: "form",
         bodyPadding: 55,
         defaultType: 'textfield',
-        layout:"anchor",
+        layout: "anchor",
         defaults: {
             anchor: '90%',
 
         },
 
-        items:[
-            {xtype:"textfield",id:"query_userName", fieldLabel:"用户名",name:"name",allowBanks:false},
-            {xtype:"textfield",id:"query_userPassword",fieldLabel:"密码",name:"password",allowBanks:false},
+        items: [
+            {xtype: "textfield", id: "query_userName", fieldLabel: "用户名", name: "name", allowBanks: false},
+            {xtype: "textfield", id: "query_userPassword", fieldLabel: "密码", name: "password", allowBanks: false},
 
 
         ],

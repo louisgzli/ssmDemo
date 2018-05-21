@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.CommodityMapper">   <!-- 命名空间，名字严格与dao对应，只要不冲突即可 -->
     <select id="findAll" resultType="model.Commodity">
-  select * from commodity
+  select * from commodity order by id asc
 </select>
 
     <insert id="insert" parameterType="model.Commodity" useGeneratedKeys="true" keyProperty="id">

@@ -3,25 +3,25 @@
  */
 Ext.define('ssmDemo.view.EmployeeChange', {
 
-    extend:"Ext.window.Window",
-    alias:"widget.employeechange",
+    extend: "Ext.window.Window",
+    alias: "widget.employeechange",
 
     width: 650,
 
-    items:[ {
-        xtype:"form",
+    items: [{
+        xtype: "form",
         bodyPadding: 55,
         defaultType: 'textfield',
-        layout:"anchor",
+        layout: "anchor",
         defaults: {
             anchor: '90%',
 
         },
 
-        items:[
-            {fieldLabel:"职员姓名",name:"name",allowBanks:false},
-            {fieldLabel:"所属公司",name:"company",allowBanks:false},
-            {xtype:"numberfield",id:"query_age",fieldLabel:"年龄",name:"age",allowBanks:false},
+        items: [
+            {fieldLabel: "职员姓名", name: "name", allowBanks: false},
+            {fieldLabel: "所属公司", name: "company", allowBanks: false},
+            {xtype: "numberfield", id: "query_age", fieldLabel: "年龄", name: "age", allowBanks: false},
 
 
         ],

@@ -9,21 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 @Service
 public class CommodityService {
     @Resource
     CommodityMapper commodityMapper;
-    public List<Commodity> findAll(){
+
+    public List<Commodity> findAll() {
         return commodityMapper.findAll();
     }
-    public void saveOrUpdate(Commodity commodity){
+
+    public void saveOrUpdate(Commodity commodity) {
         commodityMapper.saveOrUpdate(commodity);
     }
-    public void deleteById(int id){
+
+    public void deleteById(int id) {
         commodityMapper.deleteById(id);
     }
-    public void insert(Commodity commodity){
+
+    public void insert(Commodity commodity) {
         commodityMapper.insert(commodity);
     }
 }

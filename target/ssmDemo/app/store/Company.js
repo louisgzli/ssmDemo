@@ -2,13 +2,13 @@ requires:[
     "Ext.ux.data.PagingMemoryProxy",
     'Ext.grid.plugin.BufferedRenderer',
 ]
-var proxy=new Ext.data.HttpProxy({url:"localhost:8080/loadCompany"});
+var proxy = new Ext.data.HttpProxy({url: "localhost:8080/loadCompany"});
 var reader = new Ext.data.JsonReader(
-    {totalProperty:"totalProperty",root:"companies"}
+    {totalProperty: "totalProperty", root: "companies"}
 );
-Ext.define("ssmDemo.store.Company",{
-    extend:"Ext.data.Store",
-    model:"ssmDemo.model.Company",
+Ext.define("ssmDemo.store.Company", {
+    extend: "Ext.data.Store",
+    model: "ssmDemo.model.Company",
 
     /*data:[
         { "company":"序贯博","staff":120,"type":"民营企业","area":"城关区"},
@@ -49,17 +49,16 @@ Ext.define("ssmDemo.store.Company",{
 
     // autoLoad:{start:0,limit:5},
     // pageSize:5,
-    autoLoad:true,
-    proxy:{
+    autoLoad: true,
+    proxy: {
 
-        type:"ajax",
-        url:"company/loadCompany.action",
+        type: "ajax",
+        url: "company/loadCompany.action",
 
-        reader:{
-            type:"json",
-            root:"companies",
+        reader: {
+            type: "json",
+            root: "companies",
         },
-
 
 
     },
