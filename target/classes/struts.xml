@@ -1,69 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-    "http://struts.apache.org/dtds/struts-2.3.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
 
-	<constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="false"/>
 
-	<package name="/company" namespace="/company" extends="json-default">
-		<!--company-->
-		<action name="loadCompany" class = "action.CompanyAction" method="loadCompany">
-			<result name="success" type="json"/>
-		</action>
-		<action name="new" class="action.CompanyAction" method="companyCreate">
-		</action>
-		<action name="update" class="action.CompanyAction" method="companyUpdate">
-		</action>
-		<action name="dele" class="action.CompanyAction" method="companyDelete"></action>
-     </package>
-
-
-	<package name="/commodity" namespace="/commodity" extends="json-default">
-		<!--commodity-->
-		<action name="loadCommodity" class = "action.CommodityAction" method="loadCommodity">
-			<result name="success" type="json"/>
-		</action>
-		<action name="new" class="action.CommodityAction" method="commodityCreate">
-		</action>
-		<action name="update" class="action.CommodityAction" method="commodityUpdate">
-		</action>
-		<action name="dele" class="action.CommodityAction" method="dele"></action>
-
-	</package>
-
-	<package name="/employee" namespace="/employee" extends="json-default">
-		<!--employee-->
-		<action name="loadEmployee" class = "action.EmployeeAction" method="loadEmployee">
-			<result name="success" type="json"/>
-		</action>
-		<action name="new" class="action.EmployeeAction" method="employeeCreate">
-		</action>
-		<action name="update" class="action.EmployeeAction" method="employeeUpdate">
-		</action>
-		<action name="dele" class="action.EmployeeAction" method="dele"></action>
-	</package>
+    <package name="/company" namespace="/company" extends="json-default">
+        <!--company-->
+        <action name="loadCompany" class="action.CompanyAction" method="loadCompany">
+            <result name="success" type="json"/>
+        </action>
+        <action name="new" class="action.CompanyAction" method="companyCreate">
+        </action>
+        <action name="update" class="action.CompanyAction" method="companyUpdate">
+        </action>
+        <action name="dele" class="action.CompanyAction" method="companyDelete"></action>
+    </package>
 
 
+    <package name="/commodity" namespace="/commodity" extends="json-default">
+        <!--commodity-->
+        <action name="loadCommodity" class="action.CommodityAction" method="loadCommodity">
+            <result name="success" type="json"/>
+        </action>
+        <action name="new" class="action.CommodityAction" method="commodityCreate">
+        </action>
+        <action name="update" class="action.CommodityAction" method="commodityUpdate">
+        </action>
+        <action name="dele" class="action.CommodityAction" method="dele"></action>
+
+    </package>
+
+    <package name="/employee" namespace="/employee" extends="json-default">
+        <!--employee-->
+        <action name="loadEmployee" class="action.EmployeeAction" method="loadEmployee">
+            <result name="success" type="json"/>
+        </action>
+        <action name="new" class="action.EmployeeAction" method="employeeCreate">
+        </action>
+        <action name="update" class="action.EmployeeAction" method="employeeUpdate">
+        </action>
+        <action name="dele" class="action.EmployeeAction" method="dele"></action>
+    </package>
 
 
-	<package name="/user" namespace="/user" extends="json-default">
-		<!--user-->
-		<action name="loadUser" class = "action.UserManager" method="loadUser">
-			<result name="success" type="json"/>
-		</action>
-		<action name="new" class="action.UserAction" method="userCreate">
-		</action>
-		<action name="update" class="action.UserAction" method="userUpdate">
-		</action>
-		<action name="dele" class="action.UserAction" method="dele"></action>
-	</package>
+    <package name="/user" namespace="/user" extends="json-default">
+        <!--user-->
+        <action name="loadUser" class="action.UserManager" method="loadUser">
+            <result name="success" type="json"/>
+        </action>
+        <action name="new" class="action.UserAction" method="userCreate">
+        </action>
+        <action name="update" class="action.UserAction" method="userUpdate">
+        </action>
+        <action name="dele" class="action.UserAction" method="dele"></action>
+    </package>
 
-	<package name="/login" namespace="/login" extends="json-default">
-		<action name="login" class="action.UserAction" method="login">
-			<result type="json"></result>
-		</action>
+    <package name="/login" namespace="/login" extends="json-default">
+        <action name="login" class="action.UserAction" method="login">
+            <result type="json"></result>
+        </action>
 
-	</package>
+    </package>
 </struts>

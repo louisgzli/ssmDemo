@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
                 http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -17,21 +17,22 @@
     <bean id="sqlSessionFactoryId" class="org.mybatis.spring.SqlSessionFactoryBean">
 
         <property name="dataSource" ref="dataSource"></property>
-       <!--配置映射器位置-->
+        <!--配置映射器位置-->
         <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
 
     </bean>
-     <bean id="transactionManager"
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-  </bean>
+    <!--3, 配置事务管理-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
-    <!--3, 配置单mapper代理开发模式,通过id名获得mapper类对象，进而调用函数-->
+    <!--4, 配置单mapper代理开发模式,通过id名获得mapper类对象，进而调用函数-->
     <!--<bean id="singleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="dao.UserDaoMapper"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactoryId"></property>
     </bean>-->
-    <!-- 3,配置批量mapper代理开发模式，这里就不能指定id了，而是通过引用具体的mapper类名来获得mapper对象，进而操作函数 -->
+    <!-- 5,配置批量mapper代理开发模式，这里就不能指定id了，而是通过引用具体的mapper类名来获得mapper对象，进而操作函数 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="dao"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryId"></property>
